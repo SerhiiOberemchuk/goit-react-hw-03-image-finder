@@ -12,4 +12,9 @@ export const fetchGalleryItems = async searchQuery => {
   return response.data.hits;
 };
 
-export default { fetchGalleryItems };
+// export default { fetchGalleryItems };
+const api = {
+  fetchGalleryItems,
+};
+
+export default api;
