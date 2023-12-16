@@ -6,8 +6,9 @@ const BASE_URL = 'https://pixabay.com/api';
 // let pages = 1;
 const per_page = 12;
 
-export const fetchGalleryItems = async (searchText, pages) => {
+const fetchGalleryItems = async (searchText, pages) => {
   return await axios.get(
     `${BASE_URL}/?q=${searchText}&key=${API_KEY}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${per_page}&page=${pages}`
   );
 };
+export default fetchGalleryItems;
