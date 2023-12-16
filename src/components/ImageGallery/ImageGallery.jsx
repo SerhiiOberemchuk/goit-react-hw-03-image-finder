@@ -3,7 +3,7 @@ import { fetchGalleryItems } from 'Services/Api';
 import { Component } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import Swal from 'sweetalert2';
-// import { Button } from 'components/Button/Button';
+import { v4 as uuidv4 } from 'uuid';
 
 export class ImageGallery extends Component {
   state = {
@@ -25,8 +25,6 @@ export class ImageGallery extends Component {
     fetchGalleryItems(this.props.searchText, this.props.pages)
       .then(response => {
         this.props.updateHasImages(response.data.hits.length > 0);
-        // console.log('first', response.data.hits.length);
-        // console.log('first', response);
         if (!response.data.hits.length) {
           Swal.fire({
             title: 'Hmm...',
@@ -63,8 +61,9 @@ export class ImageGallery extends Component {
               {images.map(({ id, webformatURL, largeImageURL, tags }) => (
                 <ImageGalleryItem
                   openModal={this.props.openModal}
-                  key={id}
+                  key={uuidv4()}
                   tags={tags}
+                  id={id}
                   webformatURL={webformatURL}
                   largeImageURL={largeImageURL}
                 />

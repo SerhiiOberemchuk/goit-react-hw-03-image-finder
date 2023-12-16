@@ -18,22 +18,24 @@ export class Searchbar extends Component {
         backdrop: true,
         confirmButtonText: 'Back to the Search Safari!',
       });
+      this.setState({ value: '' });
       return;
     }
     if (this.props.searchText === this.state.value) {
       Swal.fire({
         title: 'Deja Vu!',
         text: "Looks like you've already searched this! Are you testing your keyboard or just really love these results?",
-        icon: 'wink',
+        icon: 'warning',
         backdrop: true,
         confirmButtonText: 'Search Again Anyway',
       });
       this.setState({ value: '' });
+      // this.props.handleSearchText(value, pages);
       return;
     }
     this.props.handleSearchText(value, pages);
     e.target.reset();
-    this.setState({ value: '' });
+    // this.setState({ value: '' });
   };
   handleChange = ({ target: { value } }) => {
     this.setState({ value });
