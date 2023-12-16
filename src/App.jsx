@@ -2,37 +2,56 @@ import { Component } from 'react';
 import { Button } from './components/Button/Button';
 import { ImageGallery } from './components/ImageGallery/ImageGallery';
 import { Searchbar } from './components/Searchbar/Searchbar';
-// import axios from 'axios';
-import Api from './Services/Api';
+import { Modal } from 'components/Modal/Modal';
 
 export class App extends Component {
   state = {
-    articles: [],
-    isLoading: false,
-    error: null,
+    searchText: '',
+    pages: 1,
+    hasImages: false,
+    isModal: false,
+    imageURL: '',
+  };
+  handleSearchText = (searchText, pages) => {
+    this.setState({ searchText, pages });
+  };
+  handleNextPage = () => {
+    this.setState(prevState => {
+      return { pages: prevState.pages + 1 };
+    });
+  };
+  updateHasImages = hasImages => {
+    this.setState({ hasImages });
   };
 
-  async componentDidMount() {
-    this.setState({ isLoading: true });
-    try {
-      const items = await Api.fetchGalleryItems('cat');
-      this.setState(prevState => {
-        return { articles: [...prevState.articles, ...items] };
-      });
-      console.log('items', items);
-    } catch (error) {
-      console.log('error', error);
-    } finally {
-      this.setState({ isLoading: false });
-    }
-  }
-
+  openModal = imageURL => {
+    this.setState({ imageURL, isModal: true });
+  };
+  handleCloseModal = () => {
+    this.setState({ imageURL: '', isModal: false });
+  };
   render() {
     return (
       <div className="App">
-        <Searchbar />
-        <ImageGallery gallery={this.state.articles} />
-        <Button />
+        <Searchbar
+          handleSearchText={this.handleSearchText}
+          searchText={this.state.searchText}
+        />
+        <ImageGallery
+          searchText={this.state.searchText}
+          pages={this.state.pages}
+          updateHasImages={this.updateHasImages}
+          openModal={this.openModal}
+        />
+        {this.state.searchText && this.state.hasImages && (
+          <Button handleNextPage={this.handleNextPage} />
+        )}
+        {this.state.isModal && (
+          <Modal
+            imageURL={this.state.imageURL}
+            handleCloseModal={this.handleCloseModal}
+          />
+        )}
       </div>
     );
   }
