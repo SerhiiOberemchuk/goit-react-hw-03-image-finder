@@ -45,7 +45,11 @@ export class Searchbar extends Component {
     return (
       <header className={css.Searchbar}>
         <form className={css.SearchForm} onSubmit={e => this.handleSubmit(e)}>
-          <button type="submit" className={css.SearchForm_button}>
+          <button
+            type="submit"
+            className={css.SearchForm_button}
+            aria-label="search button"
+          >
             <FaSearch />
           </button>
 
