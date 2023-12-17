@@ -17,6 +17,7 @@ export class App extends Component {
     isModal: false,
     imageURL: '',
     loadMore: false,
+    per_page: 30,
   };
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -33,7 +34,8 @@ export class App extends Component {
       this.setState({ isLoading: false });
       return;
     }
-    fetchGalleryItems(this.state.searchText, this.state.pages)
+    const { searchText, pages, per_page } = this.state;
+    fetchGalleryItems(searchText, pages, per_page)
       .then(response => {
         if (!response.data.hits.length) {
           Swal.fire({
