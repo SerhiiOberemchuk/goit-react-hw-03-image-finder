@@ -11,7 +11,8 @@ export class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { value, pages } = this.state;
-    if (value === '') {
+    const cleanValue = value.trim();
+    if (!cleanValue) {
       Swal.fire({
         title: 'Oops...',
         text: "Seems like your search term got lost in the keyboard jungle! Let's try to find it again.",
@@ -19,10 +20,11 @@ export class Searchbar extends Component {
         backdrop: true,
         confirmButtonText: 'Back to the Search Safari!',
       });
+      this.props.handleSearchText(cleanValue, pages);
       this.setState({ value: '' });
       return;
     }
-    if (this.props.searchText === this.state.value) {
+    if (this.props.searchText === cleanValue) {
       Swal.fire({
         title: 'Deja Vu!',
         text: "Looks like you've already searched this! Are you testing your keyboard or just really love these results?",
@@ -34,7 +36,7 @@ export class Searchbar extends Component {
       // this.props.handleSearchText(value, pages);
       return;
     }
-    this.props.handleSearchText(value, pages);
+    this.props.handleSearchText(cleanValue, pages);
     e.target.reset();
     // this.setState({ value: '' });
   };

@@ -8,13 +8,13 @@ export class Modal extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleCloseModal);
+    window.addEventListener('keydown', this.handleCloseModall);
   }
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleCloseModal);
+    window.removeEventListener('keydown', this.handleCloseModall);
   }
-  handleCloseModal = e => {
-    if (e.code === 'Escape') {
+  handleCloseModall = e => {
+    if (e.target === e.currentTarget || e.code === 'Escape') {
       this.props.handleCloseModal();
     }
   };
@@ -26,12 +26,7 @@ export class Modal extends Component {
     const { imageURL } = this.props;
     const { isLoading } = this.state;
     return (
-      <div
-        className={css.Overlay}
-        onClick={() => {
-          this.props.handleCloseModal();
-        }}
-      >
+      <div className={css.Overlay} onClick={this.handleCloseModall}>
         <div className={css.Modal}>
           {isLoading && <Loader />}
           <img
