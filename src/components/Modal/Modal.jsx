@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Loader } from 'components/Loader/Loader';
+import css from './modal.module.css';
 
 export class Modal extends Component {
   state = {
@@ -26,12 +27,12 @@ export class Modal extends Component {
     const { isLoading } = this.state;
     return (
       <div
-        className="Overlay"
+        className={css.Overlay}
         onClick={() => {
           this.props.handleCloseModal();
         }}
       >
-        <div className="Modal">
+        <div className={css.Modal}>
           {isLoading && <Loader />}
           <img
             src={imageURL}

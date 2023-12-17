@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import { Button } from './components/Button/Button';
-import { ImageGallery } from './components/ImageGallery/ImageGallery';
-import { Searchbar } from './components/Searchbar/Searchbar';
+import { Button } from '../Button/Button';
+import { ImageGallery } from '../ImageGallery/ImageGallery';
+import { Searchbar } from '../Searchbar/Searchbar';
 import { Modal } from 'components/Modal/Modal';
-
+import css from './app.module.css';
 export class App extends Component {
   state = {
     searchText: '',
@@ -32,7 +32,7 @@ export class App extends Component {
   };
   render() {
     return (
-      <div className="App">
+      <div className={css.App}>
         <Searchbar
           handleSearchText={this.handleSearchText}
           searchText={this.state.searchText}

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import css from './imageGaleryItem.module.css';
 
 export class ImageGalleryItem extends Component {
   render() {
@@ -6,11 +7,11 @@ export class ImageGalleryItem extends Component {
 
     return (
       <li
-        className="ImageGalleryItem"
+        className={css.ImageGalleryItem}
         onClick={() => this.props.openModal(largeImageURL)}
       >
         <img
-          className="ImageGalleryItem-image"
+          className={css.ImageGalleryItem_image}
           src={webformatURL}
           alt={tags}
           id={id}

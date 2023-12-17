@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import css from './searchbar.module.css';
 
 export class Searchbar extends Component {
   state = {
@@ -42,14 +43,14 @@ export class Searchbar extends Component {
   };
   render() {
     return (
-      <header className="Searchbar">
-        <form className="SearchForm" onSubmit={e => this.handleSubmit(e)}>
-          <button type="submit" className="SearchForm-button">
+      <header className={css.Searchbar}>
+        <form className={css.SearchForm} onSubmit={e => this.handleSubmit(e)}>
+          <button type="submit" className={css.SearchForm_button}>
             <FaSearch />
           </button>
 
           <input
-            className="SearchForm-input"
+            className={css.SearchForm_input}
             type="text"
             autoComplete="off"
             autoFocus

@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
+import css from './imageGalery.module.css';
 
 export class ImageGallery extends Component {
   state = {
@@ -57,7 +58,7 @@ export class ImageGallery extends Component {
       <>
         {images.length > 0 && (
           <>
-            <ul className="ImageGallery">
+            <ul className={css.ImageGallery}>
               {images.map(({ id, webformatURL, largeImageURL, tags }) => (
                 <ImageGalleryItem
                   openModal={this.props.openModal}
