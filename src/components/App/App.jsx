@@ -31,7 +31,7 @@ export class App extends Component {
 
   fetchImages = () => {
     if (this.state.searchText === '') {
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false, loadMore: false });
       return;
     }
     const { searchText, pages, per_page } = this.state;
