@@ -17,7 +17,7 @@ export class App extends Component {
     isModal: false,
     imageURL: '',
     loadMore: false,
-    per_page: 30,
+    per_page: 12,
   };
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -49,8 +49,7 @@ export class App extends Component {
           this.setState(prevState => {
             return {
               images: [...prevState.images, ...response.data.hits],
-              loadMore:
-                this.state.pages < Math.ceil(response.data.totalHits / 12),
+              loadMore: pages < Math.ceil(response.data.totalHits / per_page),
             };
           });
         }
